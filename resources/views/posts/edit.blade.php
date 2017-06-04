@@ -16,17 +16,17 @@
 
 	<div class="form-group">
 	    {{ Form::label('title','Title') }}
-	    {{ Form::text('title',$post->title,array('class'=>'form-control','placeholder'=>'Title...')) }}
+	    {{ Form::text('title',$post->title,array('class'=>'form-control')) }}
 	</div>
 
 	<div class="form-group">
 	    {{ Form::label('subject','Subject') }}
-	    {{ Form::text('subject',$post->subject,array('class'=>'form-control','placeholder'=>'Subject...')) }}
+	    {{ Form::text('subject',$post->subject,array('class'=>'form-control')) }}
 	</div>
 
 	<div class="form-group">
 	    {{ Form::label('content','Content') }}
-	    {{ Form::textarea('content',$post->content,array('class'=>'form-control','placeholder'=>'Content Goes Here...')) }}
+	    {{ Form::textarea('content',$post->content,array('class'=>'form-control')) }}
 	</div>
 
 	<div class="form-group">

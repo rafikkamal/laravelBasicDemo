@@ -11,7 +11,21 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', 'PostController@index');
+
 Route::resource('posts','PostController');
+
+//Route::get('auth/logout', 'Auth\AuthController@logout');
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
