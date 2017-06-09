@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Support\Facades\Session;
 
@@ -28,7 +29,7 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::orderBy('created_at')->get();
-        $posts = Post::orderBy('created_at')->paginate(2);
+        $posts = Post::orderBy('created_at')->paginate(5);
         // foreach ($posts as $key => $value) {
         //     echo $value;
         // }
@@ -54,14 +55,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post;
-
+        $this->validate($request,[
+            'title'     =>  'required|max:100|min:3',
+            'subject'   =>  'required|min:3',
+            'content'   =>  'required|max:300',
+            'picture'   =>  'required|mimes:jpeg,jpg,png|max:1024'
+        ]);
         $post->title = $request['title'];
         $post->content = $request['content'];
         $post->subject = $request['subject'];
         $image = $request->file('picture');
         if ($image) {
             $image_name = $image->getClientOriginalName();
-            $image->move('assets/img', $image_name);
+            $image->move(public_path('img'), $image_name);
         } else {
             $image_name = 'no_image.png';
         }
