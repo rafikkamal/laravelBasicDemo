@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\Session;
 
 
@@ -30,9 +31,6 @@ class PostController extends Controller
     {
         //$posts = Post::orderBy('created_at')->get();
         $posts = Post::orderBy('created_at')->paginate(5);
-        // foreach ($posts as $key => $value) {
-        //     echo $value;
-        // }
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -43,7 +41,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //$categories = Category::all('id','title');
+        $categories = Category::pluck('title','id');
+        return view('posts.create')->with('categories', $categories);
     }
 
     /**
@@ -57,13 +57,13 @@ class PostController extends Controller
         $post = new Post;
         $this->validate($request,[
             'title'     =>  'required|max:100|min:3',
-            'subject'   =>  'required|min:3',
+            'category'  =>  'required',
             'content'   =>  'required|max:300',
             'picture'   =>  'required|mimes:jpeg,jpg,png|max:1024'
         ]);
         $post->title = $request['title'];
         $post->content = $request['content'];
-        $post->subject = $request['subject'];
+        $post->category_id = $request['category'];
         $image = $request->file('picture');
         if ($image) {
             $image_name = $image->getClientOriginalName();
@@ -119,7 +119,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request['title'];
         $post->content = $request['content'];
-        $post->subject = $request['subject'];
+        $post->category = $request['category'];
         $image = $request->file('picture');
         if ($image) {
             $image_name = $image->getClientOriginalName();

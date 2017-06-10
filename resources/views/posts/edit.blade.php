@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="form-group">
-	    {{ Form::label('subject','Subject') }}
-	    {{ Form::text('subject',$post->subject,array('class'=>'form-control')) }}
+	    {{ Form::label('category','Category') }}
+	    {{ Form::select('category',$categories,array('class'=>'form-control')) }}
 	</div>
 
 	<div class="form-group">

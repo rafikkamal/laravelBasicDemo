@@ -9,7 +9,7 @@
         <tr>
             <th>#</th>
             <th>Post</th>
-            <th>Subject</th>
+            <th>Category</th>
             <th>Content</th>
             <th>Created</th>
         </tr>
@@ -19,7 +19,7 @@
         <tr>
             <td>{{ $post->id }}</td>
             <td>{{ $post->title }}</td>
-            <td>{{ $post->subject }}</td>
+            <td>{{ $post->category }}</td>
             <td>{{ $post->content }}</td>
             <td>{{ $post->created_at }}</td>
         </tr>

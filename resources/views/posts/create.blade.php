@@ -20,14 +20,14 @@
 	@endif
 
 	<div class="form-group">
-	    {{ Form::label('subject','Subject') }}
-	    {{ Form::text('subject',null,array('class'=>'form-control','placeholder'=>'Subject...')) }}
+	    {{ Form::label('category','Category') }}
+	    {{ Form::select('category',$categories,array('class'=>'form-control')) }}
 	</div>
 
-	@if ($errors->has('subject'))
+	@if ($errors->has('category'))
 	<div class="alert alert-danger">
 	    <strong>
-	        {{ $errors->first('subject') }}
+	        {{ $errors->first('category') }}
 	    </strong>
 	</div>
 	@endif
